@@ -231,4 +231,85 @@ var chessboard = function() {
 # # # # 
  # # # #
  */
- 
+//END OF EXERCISES
+
+
+/************************* NEW CHAPTER **********************************
+-----------CHAPTER 3 ---------------
+*/ 
+
+var makeNoise = function() {
+	console.log("Pling!");
+};
+makeNoise();
+//-> Pling!
+
+var power = function(base, exponent) {
+	var result = 1;
+	for (var count = 0; count < exponent; count++)
+		result *= base;
+	return result;
+};
+console.log(power(2,10));
+//->1024
+
+/*Some functions produce a value, such as power and square, and don't, such as makeNoise, which only produces
+a side effect.
+- A return statement determines the value the value the function returns. When control comes across such a statement,
+it immediately jumps out of the current function and gives the returned value to the code that called the function.
+The return keyword without an expression after it will cause the function to return undefined.
+*/
+
+
+var x = "outside";
+var f1 = function() {
+	var x = "inside f1";
+};
+f1();
+console.log(x);
+//-> outside
+
+var f2 = function() {
+	x = "inside f2";
+};
+f2();
+console.log(x);
+//-> inside f2
+/*This defines and calls two functions that both assign a value to the variable x. 
+The first one declares the variable as local and thus changes only the local variable. 
+The second does not declare x locally, so references to x inside of it refer the global variable x defined
+at the top of the example. 
+
+*/
+
+//NESTED SCOPE
+var landscape = function() {
+	var result = "";
+	var result = function(size) {
+		for (var count = 0; count < size; count++)
+			result += "_";
+	};
+var mountain = function(size) {
+	result += "/";
+	for (var count = 0; count < size; count++)
+		result += "'";
+	result += "\\";
+};
+
+flat(3);
+mountain(4);
+flat(6);
+mountain(1);
+flat(1);
+return result;
+};
+
+console.log(landscape());
+//-> ___/''''\______/'\_
+
+/*---The flat and mountain functions can "see" the variable called result, since they are inside of the function
+that defines it. But they can not see each other's count variables, since they are outside each other's scope.
+The environment outside of the landscape function doesn't see any of the variables defined inside of landscape.
+
+
+
