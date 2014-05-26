@@ -55,8 +55,10 @@ switch (prompt("What is the weather like?")) {
 		break;
 }
 
-/*Exercises*/
-//Looping a triangle 
+/*Exercises
+Exercise 1
+Looping a triangle 
+*/
 
 var loopingTriangle = function() {
 	var brick = "#";
@@ -74,4 +76,125 @@ var loopingTriangle = function() {
 ###### 
 #######
 */
- 
+
+/*Exercise 2
+Exercise 2 
+FizzBuzz
+*/
+
+var fizzBuzz = function() {
+	for (var i = 0; i < 101; i++) {
+		if (i % 3 && i % 5) {
+			console.log(i);
+		} else if (i % 3) {
+			console.log("Fizz");
+		} else if (i % 3) {
+			console.log("Buzz");
+		} else {
+			console.log("FizzBuzz");
+		}
+	}
+}();
+/* Prints out...
+FizzBuzz  
+1  
+2  
+FizzBuzz  
+4  
+Fizz  
+FizzBuzz  
+7  
+8  
+FizzBuzz  
+Fizz  
+11  
+FizzBuzz  
+13  
+14  
+FizzBuzz  
+16  
+17  
+FizzBuzz  
+19  
+Fizz  
+FizzBuzz  
+22  
+23  
+FizzBuzz  
+Fizz  
+26  
+FizzBuzz  
+28  
+29  
+FizzBuzz  
+31  
+32  
+FizzBuzz  
+34  
+Fizz  
+FizzBuzz  
+37  
+38  
+FizzBuzz  
+Fizz  
+41  
+FizzBuzz  
+43  
+44  
+FizzBuzz  
+46  
+47  
+FizzBuzz  
+49  
+Fizz  
+FizzBuzz  
+52  
+53  
+FizzBuzz  
+Fizz  
+56  
+FizzBuzz  
+58  
+59  
+FizzBuzz  
+61  
+62  
+FizzBuzz  
+64  
+Fizz  
+FizzBuzz  
+67  
+68  
+FizzBuzz  
+Fizz  
+71  
+FizzBuzz  
+73  
+74  
+FizzBuzz  
+76  
+77  
+FizzBuzz  
+79  
+Fizz  
+FizzBuzz  
+82  
+83  
+FizzBuzz  
+Fizz  
+86  
+FizzBuzz  
+88  
+89  
+FizzBuzz  
+91  
+92  
+FizzBuzz  
+94  
+Fizz
+FizzBuzz  
+97 
+FizzBuzz  
+Fizz 
+*/
+
