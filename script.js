@@ -61,7 +61,17 @@ switch (prompt("What is the weather like?")) {
 var loopingTriangle = function() {
 	var brick = "#";
 	for (var i = 0; i < 7; i++) {
-		brick += "#"
 		console.log(brick);
+		brick += "#"
 	}
 }();
+/* prints out 
+# 
+##
+###
+####
+##### 
+###### 
+#######
+*/
+ 
