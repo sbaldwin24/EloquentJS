@@ -42,7 +42,7 @@ console.log(result);
 /*------!!!! NEW EXAMPLE -------!!!!*/
 switch (prompt("What is the weather like?")) {
 	case "sunny":
-		console.log("you should wear something light");
+		console.log("You should wear something lite... or a tank top");
 		break;
 	case "rainy":
 		console.log("Maybe you should bring an umbrella?");
@@ -108,7 +108,7 @@ FizzBuzz
 FizzBuzz  
 Fizz  
 11  
-FizzBuzz  
+FizzBuzz 
 13  
 14  
 FizzBuzz  
@@ -197,4 +197,38 @@ FizzBuzz
 FizzBuzz  
 Fizz 
 */
+//End of FIZZBUZZ
 
+/*Chessboard 
+Last Exercise from Chapter 2!!
+*/
+
+var chessboard = function() {
+	var board = "";
+	var space = " ";
+	var hash = "#";
+	var size = 8;
+
+	for (var y = 0; y < size; y++) {
+		for (var x = 0; x < size; x++) {
+			if ((y + x) % 2) 
+				board += space;
+			else
+				board += hash;
+		}
+			board += "\n";
+	}
+		console.log(board);
+}();
+
+/* Prints out...
+# # # # 
+ # # # #
+# # # # 
+ # # # #
+# # # # 
+ # # # #
+# # # # 
+ # # # #
+ */
+ 
