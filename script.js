@@ -55,3 +55,13 @@ switch (prompt("What is the weather like?")) {
 		break;
 }
 
+/*Exercises*/
+//Looping a triangle 
+
+var loopingTriangle = function() {
+	var brick = "#";
+	for (var i = 0; i < 7; i++) {
+		brick += "#"
+		console.log(brick);
+	}
+}();
