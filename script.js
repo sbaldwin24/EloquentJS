@@ -311,5 +311,33 @@ console.log(landscape());
 that defines it. But they can not see each other's count variables, since they are outside each other's scope.
 The environment outside of the landscape function doesn't see any of the variables defined inside of landscape.
 
+In short, each local scope can also see all the local scopes that contain it. The set of variables visible inside
+a function is determined by the place of that function in the program text. 
+
+All variables from blocks "around" a function's definitions are visible -- meaning both those in function bodies 
+that enclose it and those at the top level of the program. This approach to the variable visibility is called 
+lexical scoping. 
+*/
+
+//FREE-STANDING BLOCKS:
+
+var something = 1; 
+{
+	var something = 2;
+	// Do stuff with variable something
+}
+// Outside of the block again...
+/* But the something inside the block refers to the same variable as the one outside the block. 
+In fact, although blocks like this are allowed, they are only useful to group the body of an if statement or loop. 
+
+If you find this odd, you're not alone. The next version of JavaScript will introduce a let keyword, which works like var,
+but creates a variable that is local to the enclosing block, not the enclosing function.
+*/
+
+//FUNCTIONS AS VALUES 
+/* 
+
+*/
+
 
 
