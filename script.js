@@ -339,5 +339,53 @@ but creates a variable that is local to the enclosing block, not the enclosing f
 
 */
 
+//THE CALL STACK 
+/*The author thinks it would be helpful to take a closer look at the way CONTROL FLOWS THROUGH FUNCTIONS... possibly. Here is a simple 
+program that makes a few function calls.*/
+
+function greet(who) {
+	console.log("Hello " + who);
+}
+greet("Harry");
+console.log("Bye");
+//->Hello Harry
+//->Bye
+
+/* A run though this program goes roughly like this:
+The call to greet causes control to jump to the start of that function (line 2). 
+It calls console.log, which takes control, does its job, then returns control to line 2.
+Then it reaches the end of the greet function, so it returns to the place that called it, at line 4. 
+The line after that calls console.log again.
+
+We could show the flow of control schematically like this:
+*/
+top	
+	greet
+		console.log
+	greet
+top
+	console.log
+top
+
+/* Because a function has to jump back to the place of the call when it returns, the computer must remember the context from which
+the function was called. In one case, console.log had to jump back to the greet function. In the other case, it jumps back to the 
+end of the program. 
+
+The place where the computer stores this context is the CALL STACK. Every time a function is called, the current context is put on top this 
+"stack". When the function returns, it takes the top context from the stack and uses it to continue execution.
+
+Storing this stack requires space in the computer's memory. When the stack grows too big, the computer will fail with a message like 
+"out of stack space" or "too much recursion". The following code illustrates this by asking the computer a really hard question, which
+causes an infinite back-and-forth between two functions. Rather, it would be infinite, if the computer had an infinite stack.
+As it is, we will run out of space, or "blow the stack". */
+
+function chicken() {
+	return egg();
+}
+function egg() {
+	return chicken();
+}
+console.log(chicken() + " came first.");
+//-> ??
 
 
