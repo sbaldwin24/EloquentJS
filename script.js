@@ -607,3 +607,46 @@ pass that string along, ultimately returning our solution! WOWZA!!!!
  //////////////////////NEW SECTION//////////////////////
 
 ///////////****Growing Functions****///////////
+//EXAMPLE
+
+007 Cows
+011 Chickens
+
+function printFarmInventory(cows, chickens) {
+	var cowString = String(cows);
+	while (cowString.length < 3)
+		cowString = "0" + cowString;
+	console.log(cowString + " Cows");
+	var chickenString = String(chickens);
+	while (chickenString.length < 3)
+		chickenString = "0" + chickenString;
+	console.log(chickenString + " Chickens";)
+}
+printFarmInventory(7,11);
+
+/*Adding .length after a string value will give us the length of that string. Thus, the 
+while loops keep adding zeroes in front of the number strings until they are at least three
+characters long. 
+
+Mission accomplished! But just as we are about to send the farmer the code, he calls and 
+tells us he's also started keeping pigs, and couuld we please extend the software to also
+print pigs?
+
+We sure can. But just as we're in the process of copy-pasting those four lines one more 
+time, we stop and reconsider. There has to be a better way... 
+Here's a first attempt:
+*/
+function printZeroPaddedWithLabel(number, label) {
+	var numberString = String(number);
+	while (numberString.length < 3)
+		numberString = "0" + numberString;
+	console.log(numberString + " " + label);
+}
+
+function printFarmInventory(cows, chickens, pigs) {
+	printZeroPaddedWithLabel(cows, "Cows");
+	printZeroPaddedWithLabel(chickens, "Chickens");
+	printZeroPaddedWithLabel(pigs, "Pigs");
+}
+
+printFarmInventory(7, 11, 3);
