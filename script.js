@@ -462,8 +462,42 @@ multiple instances of the variable can be alive at the same time, which is anoth
 illustrations of the concept that local variables really are recreated for every 
 call--different calls can't trample on one another's local variables. 
 
+Being able to reference a specific instance of local variables in an enclosing function --
+is called closure.
+->A function that "closes over" some local variables is a closure.
+This behavior not only frees you from having to worry about lifetimes of variables, but
+also allows for some creative use of function values. 
 
+With a slight change, we can turn the previous example into a way to create functions that
+multiply by an aribitrary amount:
 */
+
+function multiplier (factor) {
+	return function(number) {
+		return number * factor;
+	};
+}
+var twice = multiplier(2);
+console.log(twice(5));
+//-> 10
+
+/*The explicit localVariable from the wrapValue example isn't need. since a parameter is
+itself a local variable. 
+
+********MENTAL MODEL******* to help with understanding programs like this...
+Think of the function keyword as "freezing" the code in its body, and wrapping it into 
+a package(the function value). 
+So when you read -> return function(...) {...}
+think of it as returning a handle piece of computation being frozen for later use. 
+
+In the example, multiplier returns a frozen chunk of code that gets stored in the twice
+variable. The last line then calls the value in this variable, 
+causing the frozen code (return number * factor;) to be activated. 
+It still has access to the factor variable from the multiplier call that created it, and in
+addition it gets access to the argument passed when unfreezing it, 5, through its number
+parameter. 
+
+
 
 
  
