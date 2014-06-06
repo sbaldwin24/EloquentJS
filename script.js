@@ -388,4 +388,82 @@ function egg() {
 console.log(chicken() + " came first.");
 //-> ??
 
+//NEW SECTION
+//OPTIONAL ARGUEMENTS.......
+//The following code is allowed and executes without any problem.
+alert("Hello", "Good Evening", "More tea, Sir?");
+/*The function alert officialy accepts only one arument. Yet when you call it like this,
+it doesn't complain. It simply ignores the other arguments and shows you "Hello".
 
+JavaScript is extremely broad-minded about the number of arguements you pass to a function.
+If you pass too many, the extra ones will be ignored. If you pass too many, the missing
+parameters simply get assigned the value undefined. 
+
+The DOWNSIDE of this is that is possible --likely, even-- that you'll accidently pass the
+wrong number of arguments to functions, and no one will tell you about it :( ugh...
+
+The UPSIDE is that this behavior can be used to have a function take "optional" arguments.
+For EXAMPLE, the following version of power can be called either with two arguments or 
+with a single arguments, in which case the exponent is assumed to be two, and the function
+behaves like   square.
+*/
+
+function power(base, exponent) {
+	if (exponent == undefined)
+		exponent = 2;
+	var result = 1;
+	for (var count = 0; count < exponent; count++)
+		result *= base;
+	return result;
+}
+console.log(power(4));
+//->16
+console.log(power(4, 3));
+//->64
+
+/*The first console.log has only has the argument 4 (line 419), so the exponent is assumed
+to be 2. 4^2 is equel to 64! WOWZA!
+
+In the next chapter, we will see a way in which a function body can get at the exact list 
+of arguments that were passed. This helpful because it makes it possible for a function to
+accept any number of arguments. console.logmakes used of this--it outputs all of the values
+it is given.
+*/
+console.log("R", 2, "D", 2);
+//->R 2 D 2
+
+//////////////////////NEW SECTION//////////////////////
+
+///////////****CLOSURE****///////////
+
+/*The ability to treat functions as values, combined with the fact that local variables are
+"recreated" every time a function is called, bring ups an interesting question.
+	What happens to local variables when the function call that created them
+	is no longer active?
+
+The following code shows an example of this. It defines a function, wrapValue, that creates
+a local variable. It then returns a function that accesses this local variable, returning
+its value when it is called. 
+*/
+
+function wrapValue(n) {
+	var localVariable = n;
+	return function() { return localVariable; };
+}
+
+var wrap1 = wrapValue(1);
+var wrap2 = wrapValue(2);
+console.log(wrap1());
+//-> 1
+console.log(wrap(2));
+//-> 2
+/*This is allowed, and works as you'd hope--the variable can still be accessed. In fact,
+multiple instances of the variable can be alive at the same time, which is another good
+illustrations of the concept that local variables really are recreated for every 
+call--different calls can't trample on one another's local variables. 
+
+
+*/
+
+
+ 
