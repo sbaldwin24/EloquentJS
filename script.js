@@ -496,8 +496,114 @@ causing the frozen code (return number * factor;) to be activated.
 It still has access to the factor variable from the multiplier call that created it, and in
 addition it gets access to the argument passed when unfreezing it, 5, through its number
 parameter. 
+*/
 
+ //////////////////////NEW SECTION//////////////////////
 
+///////////****RECURTION****///////////
+/*It is perfectly okay for a function to call itself. A function that calls itself is
+called recursive. Recursion allows some functions to written in a funny way. Take, for
+example, the follow alternative implementation of power:
+*/
 
+function power(base, exponent) {
+	if (exponent == 0)
+		return 1;
+	else
+		return base * power(base, exponent - 1);
+}
+console.log(power(2, 3));
+//->8
+/*This function calls itself multiple times with different arguments to achieve the
+the repeated multiplication.
+This is a pretty long and inefficient way to write it. The basic rule is not to worry
+about efficiency until you know for sure that the program is too slow. If the program is
+too slow, find out which parts are taking up the most time, and start exchanging elegance
+for efficiency in those parts.
 
- 
+Recursion is not always just a less-efficient alternative to looping. Some problems are
+much easier to solve with recursion than with loops. Most often these are problems that
+require exploring or processing several "branches", each of which might branch out
+again into more branches.
+
+Consider this puzzle: by starting from the number 1 and repeatedly eith adding 5 or
+multiplying by 3, an infinite amount of new numbers can be produced. How would you write
+a function that, given a number, tries to find a sequence of such additions and 
+multiplications that produce that number?
+For example, the number 13 could be reached by first multiplying 3 and the adding 5 twice,
+whereas the number 15 cannot be reached at all. 
+
+Here is a recursive solution:
+*/
+
+function findSolution(target) {
+	function find(start, history) {
+		if (start == target)
+			return history;
+		else if (start > target)
+			return null;
+		else 
+			return find(start + 5, "(" + history + " + 5)") ||
+					find(start * 3, "(" + history + " * 3)");
+	}
+	return find(1, "1");
+}
+console.log(findSolution(24));
+//->(((1 * 3) + 5) * 3)
+
+/**** return find(1, "1"); 
+	->This is the first call and it tries to find itself twice, to explore the solutions
+	that start with (1 + 5) and (1 * 3).
+****/
+
+/*Note that this program doesn't necessarily find the shortest sequence of operations.
+It is satisfied when it finds any sequence at all. 
+
+THIS IS RECURSIVE THINKING...
+
+The inner function find does the actual recursing. It takes two arguments--the current 
+number and a string that records how we reached this number--and returns either a string
+that shows how to get to the target, or null.
+
+In order to do this, the function perfors one of three actions.
+if the current number is the target number, the current history is a way to 
+reach that target, so it is simply returned. If the current number is greater than the
+target, there's no sense in further exploring the history, since both adding and multiplying
+will only make the number bigger. And finally, if we're still below the target, the function
+tries both possible paths that start from the current number, by calling itself twice,
+once for each of the allowed steps. If the first call returns something that is not null,
+it is returned. Otherwise, the second call is returned--regardless of whether it produces
+a string or null.
+
+To better understand how this function produces the effect we're looking for, let look at
+all the calls to find that are made when searching for a solution for the number 13:
+*/
+
+find(1, "1")
+	find(6, "(1 + 5)")
+		find(11, "((1 + 5) + 5)")
+			find(16, "(((1 + 5) + 5) * 3)")
+				too big
+			find(33, "(((1 + 5) + 5) * 3)")
+				too big
+		find(18, "((1 + 5) * 3)")
+			too big
+	find(3, "(1 * 3)")
+		find(8, "((1 * 3) + 5)")
+			find(13, "(((1 * 3) + 5) + 5)")
+				found!
+/*The indentation suggest the depth of the call stack. 
+1. The first call to find calls itself twice, to explore the solutions that start with
+(1 + 5) and (1 * 3). The first call tries to find a solution that starts with with the
+(1 + 5), and, using recursion, explores every solution that yields a number smaller
+or equel to to than the target number. Since it doesn't find a solution that hits the
+the target, it returns null back to the first call. There the "||" operator causes the call
+that explores (1 * 3) to happen. This search has more luck, as its first recursive call,
+through yet another recursive call, hits upon the target number, 13. This innermost 
+reccursive call returns a string, and each of the "||" operators in the intermediate calls
+pass that string along, ultimately returning our solution! WOWZA!!!!
+*/
+
+ //////////////////////NEW SECTION//////////////////////
+
+///////////****Growing Functions****///////////
