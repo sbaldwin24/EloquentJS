@@ -650,3 +650,26 @@ function printFarmInventory(cows, chickens, pigs) {
 }
 
 printFarmInventory(7, 11, 3);
+//-> 007 Cows
+//-> 011 Chickens 
+//-> 003 Pigs
+
+//////////////////////NEW SECTION//////////////////////
+
+///////////****FUNCTIONS AND SIDE EFFECTS****///////////
+/*Functions can be roughly divided into those that are called for their side effects, and those that are called for their return value.
+(Though it is definitely also possible to have both side effects and return a value.)
+
+The first helper function is the example, printZeroPaddedWithLabel, is called for its side effect: it prints a line. 
+The second version, zeroPad, is called for its return value. It is no coincidence that the second version is useful in more situations than the
+first. Functions that create values are easier to combine in new ways than functions that directly perform side effects. 
+
+A pure function is a specific kind of value-producing function that not only has no side effects, but also doesn't rely on side effects from
+other code--example, it doesn't ready global variables that are occasionally changed by other code. A pure function has the pleasant property
+that, when called with the same arguments, it always produces the same value(and doesn't do anything else). This makes it easy to reason about.
+A call to such a function can be mentally substituted by its result, without changing the meaning of the code. When you are not sure that a pure
+function is working correctly, you can test it by simply calling it and know that if it works in that context, it will work in any context.
+
+Non-pure functions might return different values based on all kinds of factors and have side effects that might be hard to test and think about.
+
+*/
